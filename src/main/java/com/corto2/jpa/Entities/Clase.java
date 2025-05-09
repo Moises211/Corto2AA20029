@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -33,6 +34,10 @@ public class Clase {
     public Clase(Integer id) {
         this.id = id;
     }
+
+    @JoinColumn(name="id_coach")
+    @ManyToOne()
+    private Entrenador entrenador;
 
     public Clase() {
     }
@@ -67,6 +72,14 @@ public class Clase {
 
     public void setMiembros(List<Miembro> miembros) {
         this.miembros = miembros;
+    }
+
+    public Entrenador getEntrenador() {
+        return entrenador;
+    }
+
+    public void setEntrenador(Entrenador entrenador) {
+        this.entrenador = entrenador;
     }
 
     

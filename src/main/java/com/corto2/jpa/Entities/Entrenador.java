@@ -3,7 +3,9 @@ package com.corto2.jpa.Entities;
 
 
 import java.util.Date;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,6 +13,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -33,6 +36,9 @@ public class Entrenador {
     @JoinColumn(name="id_person")
     @ManyToOne()
     private Personas personas;
+
+    @OneToMany(mappedBy = "entrenador",  cascade = { CascadeType.REMOVE, CascadeType.MERGE })
+    private List<Clase> clase;
 
     public Entrenador() {
         
@@ -80,6 +86,14 @@ public class Entrenador {
 
     public void setPersonas(Personas personas) {
         this.personas = personas;
+    }
+
+    public List<Clase> getClase() {
+        return clase;
+    }
+
+    public void setClase(List<Clase> clase) {
+        this.clase = clase;
     }
 
     
